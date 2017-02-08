@@ -6,9 +6,6 @@ build_and_deploy_prod:
   stage: build
   script:
     - npm install
-    - gulp
-    - git add .
-    - git commit -m "Deploying to server"
     - git push dokku release:master
   only:
     - master
