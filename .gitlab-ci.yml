@@ -1,0 +1,16 @@
+stages:
+  - clean_up
+  - build
+  
+build_and_deploy_prod:
+  stage: build
+  script:
+    gulp
+    git push dokku release:master
+  only:
+    - master
+
+clean_up_job:
+  stage: clean_up
+  script:
+    - rm -rf dist/
