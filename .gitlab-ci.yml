@@ -11,10 +11,9 @@ stages:
 build_and_deploy_prod:
   stage: build
   script:
-    - npm install
+    - git add .
+    - git commit -m "Deploying to dokku"
     - git push dokku@www.mehla.in:www master
-  only:
-    - master
 
 clean_up_job:
   stage: clean_up
