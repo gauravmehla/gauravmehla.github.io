@@ -10,5 +10,4 @@ stages:
 deploy_to_dokku:
   stage: deploy
   script:
-    - git log --name-status HEAD^..HEAD | cat
-    - git push -f dokku@www.mehla.in:www master
+    - git push dokku master:master
