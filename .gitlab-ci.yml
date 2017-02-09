@@ -5,16 +5,10 @@ before_script:
   - ssh-keyscan -H 'www.mehla.in' >> ~/.ssh/known_hosts
 
 stages:
-  - clean_up
-  - build
+  - deploy
   
-build_and_deploy_prod:
-  stage: build
+deploy_to_dokku:
+  stage: deploy
   script:
-    - git remote -v
-    - git push -f dokku@www.mehla.in:www master
-
-clean_up_job:
-  stage: clean_up
-  script:
-    - rm -rf dist/
+    - git pull dokku@www.mehla.in:www master
+    - git push dokku@www.mehla.in:www master
