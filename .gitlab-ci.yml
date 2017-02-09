@@ -10,5 +10,4 @@ stages:
 deploy_to_dokku:
   stage: deploy
   script:
-    - git pull dokku@www.mehla.in:www master
-    - git push dokku@www.mehla.in:www master
+    - git push dokku@www.mehla.in:www master:master
