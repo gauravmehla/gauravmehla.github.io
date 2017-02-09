@@ -1,3 +1,9 @@
+before_script:
+  - mkdir -p ~/.ssh
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - ssh-keyscan -H 'www.mehla.in' >> ~/.ssh/known_hosts
+
 stages:
   - clean_up
   - build
