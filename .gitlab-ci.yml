@@ -10,5 +10,7 @@ stages:
 deploy_to_dokku:
   stage: deploy
   script:
+    - git branch
     - git checkout master
+    - git pull origin master
     - git push dokku master
