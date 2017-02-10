@@ -3,12 +3,14 @@ before_script:
   - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
   - ssh-keyscan -H 'www.mehla.in' >> ~/.ssh/known_hosts
-
+  
 stages:
   - deploy
   
 deploy_to_dokku:
   stage: deploy
   script:
-    - git log --name-status HEAD^..HEAD | cat
-    - git push -f dokku@www.mehla.in:www master
+    - git branch
+    - git checkout master
+    - git pull origin master
+    - git push dokku master
