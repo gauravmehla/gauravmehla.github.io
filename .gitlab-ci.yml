@@ -14,3 +14,5 @@ deploy_to_dokku:
     - git checkout master
     - git pull origin master
     - git push dokku master
+  only:
+    - master
