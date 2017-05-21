@@ -81,7 +81,7 @@ ul li {
 .wrapper {
     max-width: 1000px;
     margin: auto;
-    padding: 60px 30px 60px 30px
+    padding: 50px 30px 50px 30px
 }
 
 @media screen and (max-width: 600px) {
