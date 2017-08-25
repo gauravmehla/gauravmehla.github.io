@@ -327,3 +327,17 @@ ul li {
         animation:octocat-wave 560ms ease-in-out
     }
 }
+
+
+
+/* BLOGS */
+
+.blog {
+    padding: 20px;
+    margin: 20px;
+}
+
+.blog_year {
+    font-size: 24px;
+    margin-top: 20px;
+}

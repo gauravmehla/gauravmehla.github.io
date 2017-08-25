@@ -12,6 +12,7 @@ var hbs = exphbs.create({ /* config */ });
 var index = require('./routes/index');
 var about = require('./routes/about');
 var timeline = require('./routes/timeline');
+var blogs = require('./routes/blogs');
 
 var app = express();
 
@@ -30,5 +31,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/me', about);
 app.use('/timeline', timeline);
+app.use('/blogs', blogs);
 
 module.exports = app;
