@@ -340,4 +340,17 @@ ul li {
 .blog_year {
     font-size: 24px;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
+
+.blog_month {
+    padding: 15px;
+}
+
+.blog_day span{
+    width: 200px;
+}
+
+
+
+
