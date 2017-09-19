@@ -41,6 +41,14 @@
   margin: 20px;
 }
 
+/* ASCII Terminal */
+.ascii-terminal {
+  width: 100%;
+  background: #121314;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 /* Progress meter*/
 /* skill meter in resume. copy pasted from http://bootsnipp.com/snippets/featured/progress-bar-meter */
 
