@@ -49,6 +49,10 @@
   border-radius: 5px;
 }
 
+.control-bar {
+    display: none;
+}
+
 /* Progress meter*/
 /* skill meter in resume. copy pasted from http://bootsnipp.com/snippets/featured/progress-bar-meter */
 
