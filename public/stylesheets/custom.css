@@ -41,16 +41,42 @@
   margin: 20px;
 }
 
-/* ASCII Terminal */
-.ascii-terminal {
-  width: 100%;
-  background: #121314;
-  padding: 10px;
-  border-radius: 5px;
+.center_post {
 }
 
-.control-bar {
-    display: none;
+.center_controls {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.sub-text {
+  margin-left: 10px;
+  color: #565656;
+}
+
+.center_text {
+  font-size: 120px;
+  padding: 80px;
+}
+
+.bracanim {
+  color: red;
+  -webkit-animation: blinking 2s linear infinite ; /* Safari 4.0 - 8.0 */
+  animation: blinking 2s linear infinite ;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes blinking {
+    0%   { color:red; }
+    80% { color:black; }
+    100% { color:black;}
+}
+
+/* Standard syntax */
+@keyframes blinking {
+    0%   { color:red; }
+    80% { color:black; }
+    100% { color:black;}
 }
 
 /* Progress meter*/

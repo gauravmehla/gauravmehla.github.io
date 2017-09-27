@@ -13,6 +13,7 @@ var index = require('./routes/index');
 var about = require('./routes/about');
 var timeline = require('./routes/timeline');
 var blogs = require('./routes/blogs');
+var links = require('./routes/links');
 
 var app = express();
 
@@ -32,5 +33,6 @@ app.use('/', index);
 app.use('/me', about);
 app.use('/timeline', timeline);
 app.use('/blogs', blogs);
+app.use('/links', links);
 
 module.exports = app;
