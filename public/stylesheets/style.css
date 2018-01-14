@@ -338,9 +338,12 @@ ul li {
 }
 
 .blog_year {
-    font-size: 24px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    font-size: 14px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #d42424;
+    color: white;
+    padding: 6px;
 }
 
 .blog_month {
