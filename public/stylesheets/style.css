@@ -8,6 +8,15 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
     cursor: url('../images/cursor.png'), auto;
 }
 
+@font-face {
+    font-family: Panter;
+    src: url(Panther.ttf);
+}
+
+.panther {
+    font-family: Panter;
+}
+
 a {
     text-decoration: none
 }
@@ -365,6 +374,12 @@ ul li {
     width: 200px;
 }
 
+.trail { /* className for the trail elements */
+    position: absolute;
+    height: 3px; width: 3px;
+    border-radius: 3px;
+    background: #d42424;
+  }
 
 
 
