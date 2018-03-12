@@ -382,7 +382,8 @@ ul li {
   }
 
 .hvr-float:hover {
-    color:#d42424;
+    background:#d42424;
+    color:white;
 }
 
 .hvr-sweep-to-right{
