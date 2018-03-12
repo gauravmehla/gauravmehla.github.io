@@ -381,6 +381,13 @@ ul li {
     background: #d42424;
   }
 
+.hvr-float:hover {
+    color:#d42424;
+}
+
+.hvr-sweep-to-right{
+    padding: 10px;
+}
 
 #resume-button {
     color:white;
