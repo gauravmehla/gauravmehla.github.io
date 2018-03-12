@@ -382,4 +382,15 @@ ul li {
   }
 
 
+#resume-button {
+    color:white;
+    background-color: #d42424;
+    padding: 10px;
+    margin-left:150px;
+}
+
+#resume-button:hover {
+    border: none;
+}
+
 
