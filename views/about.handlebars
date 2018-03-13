@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" data-spy="scroll">
     <div class="about">
     	<a class="about__back" href="/">&lt;-- back</a>
 	    <h1 class="about__title">About Me:</h1>
@@ -8,34 +8,45 @@
 				<tr>
 					<td>
 						<div>
-							<img src="/images/gaurav_mehla.jpg" style="width: 400px;" class="hvr-grow-rotate hvr-glow">
+							<img src="/images/gaurav_mehla.jpg" style="width: 400px;" class="hvr-glow">
 						</div>
 					</td>
 					<td>
 
-						<p>Hello, my name is <span class="invert">Gaurav Mehla</span>. I am a FullStack Developer & write a lot of code. I Love JavaScript and like <a href="https://nodejs.org/en/">NodeJS</a>.</p>
+						<p>Hello, my name is <span class="invert">Gaurav Mehla</span>. I am a FullStack Developer & novice designer ( <i>This whole website is designed by me</i> ). write a lot of code. I Love JavaScript and like <a href="https://nodejs.org/en/">NodeJS</a>.</p>
 
 						<p>I am currently working at <a href="http://livemedia.in/">Livemedia</a> as a Software Engineer. I have been using NodeJS, AngularJS and MongoDB for main Tech Stack while Ionic for building mobile applications.</p>
 
 						<p>This is a place for me to share what I learn from my experiences - a collection of articles on software engineering, rants, life stories, and hiking.</p>
 
 						<p>Want to know more about me ? Checkout <a href="https://www.github.com/gauravmehla">Github</a>, <a href="https://www.npmjs.com/~gauravmehla">npm</a> and <a href="https://stackoverflow.com/users/3835198/gauravmehla?tab=profile">Stackoverflow</a></p>
-
-						<div class="options about-options">
-							<ul>
-							  <li> >_ <a href="#programmin_skills"> Programming Language Skills </a> </li>
-							  <li> >_ <a href="#framework_skills"> Framework Skills </a> </li>
-							  <li> >_ <a href="#db_skills"> Database Skills </a> </li>
-							  <li> >_ <a href="#edu_skills"> Education & jobs </a> </li>
-							  <li> >_ <a href="#interests"> Interests </a> </li>
-							</ul>
-						</div>
-
 					</td>
 				</tr>
 			</table>
 	   
 	    </div>
+		
+		<div class="row">
+			<div class="col-md-6">
+				<h1 class="about__title"> <span id="red-block" class="hvr-bounce-in">#</span> Sections </h1>
+				<div class="options about-options">
+					<ul>
+					  <li> >_ <a href="#programmin_skills"> Programming Language Skills </a> </li>
+					  <li> >_ <a href="#framework_skills"> Framework Skills </a> </li>
+					  <li> >_ <a href="#db_skills"> Database Skills </a> </li>
+					  <li> >_ <a href="#edu_skills"> Education & jobs </a> </li>
+					  <li> >_ <a href="#interests"> Interests </a> </li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="text-center" style="margin-top: 150px;margin-bottom: 150px;">
+					<img src="/images/download_resume.png">
+					<br>
+					<a href="/gaurav mehla resume.pdf" id="resume-button" class="hvr-outline-in hvr-buzz-out"> View full Resume </a>
+				</div>
+			</div>
+		</div>
 
 	    <div class="skill_block">
 	    	<h1 class="about__title" id="programmin_skills"> <span id="red-block" class="hvr-bounce-in">#</span> Language and Platform Skills :</h1>
@@ -153,41 +164,58 @@
 	    	<!-- The Timeline -->
 
 				<ul class="timeline">
+					
+					<li>
+						<div class="direction-l">
+							<div class="flag-wrapper">
+								<span class="flag">Looking 👀</span>
+								<span class="time-wrapper"><span class="time">Mar 2018 - present</span></span>
+							</div>
+							<div class="desc">My current employment. Way better than the position before! Working on MEAN Stack.</div>
+						</div>
+					</li>
 
 					<!-- Item 1 -->
 					<li>
 						<div class="direction-r">
 							<div class="flag-wrapper">
 								<span class="flag">Livemedia</span>
-								<span class="time-wrapper"><span class="time">Nov 2016 - present</span></span>
+								<span class="time-wrapper"><span class="time">Nov 2016 - Mar 2018</span></span>
 							</div>
-							<div class="desc">My current employment. Way better than the position before! Working on MEAN Stack.</div>
+							<div class="desc">My last employment. Way better than the position before! Working on MEAN Stack.</div>
 						</div>
 					</li>
 				  
 					<!-- Item 2 -->
 					<li>
-						<div class="direction-l">
+						<div class="direction-r">
 							<div class="flag-wrapper">
 								<span class="flag">Buringo</span>
 								<span class="time-wrapper"><span class="time">Sep 2016 - Nov 2016</span></span>
 							</div>
-							<div class="desc">My first employer. Worked on Meteor.</div>
+							<div class="desc">My first employement. Worked on Meteor.</div>
 						</div>
 					</li>
 
 					<!-- Item 3 -->
 					<li>
-						<div class="direction-r">
+						<div class="direction-l">
 							<div class="flag-wrapper">
 								<span class="flag">B.Tech - KUK</span>
 								<span class="time-wrapper"><span class="time">Aug 2012 - July 2016</span></span>
 							</div>
-							<div class="desc">Learned Data Structures, Algorithms, etc.</div>
+							<div class="desc">Learned Data Structures, Algorithms, etc. Worked on a lot of projects which are based on LAMP tech stack. 3 of them are live in my college and appriciated by management of college</div>
 						</div>
 					</li>
 
-				  
+					<li>
+						<div class="direction-l">
+							<div class="flag-wrapper">
+								<span class="flag">High School</span>
+								<span class="time-wrapper"><span class="time">Mar 2012</span></span>
+							</div>
+						</div>
+					</li>
 				</ul>
 
 	    	</div>
@@ -200,12 +228,6 @@
 			</blockquote>
 		</div>
 		
-		<div class="row text-center" style="margin-top: 150px;margin-bottom: 150px;">
-			<img src="/images/download_resume.png">
-			<br>
-			<a href="/gaurav mehla resume.pdf" id="resume-button" class="hvr-outline-in hvr-buzz-out"> View full Resume </a>
-		</div>
 		
-
 	</div>
 </div>
