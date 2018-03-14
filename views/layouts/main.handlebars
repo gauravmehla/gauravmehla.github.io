@@ -30,13 +30,16 @@
 
 <div id="return-to-top" class="hvr-grow-rotate">
     <i class="fa fa-level-up" aria-hidden="true"></i>
-
 </div>
 
 <div class="container">
     <div class="row col-md-12">
         {{{body}}}
     </div>
+</div>
+
+<div style="position: absolute; left: 50px;top:400px;">
+  <img src="/images/corner.png">
 </div>
 	
 
@@ -164,6 +167,26 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip(); 
         });
+
+        // Generate random pairs
+        (function(){
+          function randomCenterTextPair() {
+            var pairs = [
+              ['<', '/>'],
+              ['{', '}'],
+              ['[', ']'],
+              ['!', 'undefined'],
+              ['$', '$'],
+              ['>_','<'],
+              ['/','/'],
+              ['/* comment *', '/']
+            ];
+            return pairs[Math.floor(Math.random()*pairs.length)];
+          }
+          var centerTextOptions = randomCenterTextPair();
+          $('.center_text').append( centerTextOptions[0] + '<span class="bracanim">' + centerTextOptions[1] + '</span>');
+        })();
+        
     </script>
 </body>
 </html>
