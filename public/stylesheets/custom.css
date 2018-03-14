@@ -650,3 +650,19 @@
     font-size: 44px;
     font-weight: bolder;
 }
+
+#corner-text {
+  position: absolute;
+  left: 50px;
+  top:400px;
+  height: 306px;
+  width: 373px;
+  background-image: url('../images/corner.png');
+}
+
+#resume-arrow {
+  background-image: url('../images/download_resume.png');
+  width: 190px;
+  height: 148px;
+  padding-right: 20px;
+}
