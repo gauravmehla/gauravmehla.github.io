@@ -438,5 +438,7 @@ ul li {
     top: 5px;
 }
 
-
+.cert:hover {
+    border: none;
+}
 
