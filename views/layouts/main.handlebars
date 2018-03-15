@@ -164,7 +164,7 @@
         });
 
         // Generate random pairs
-        (function(){
+        function randomText(){
           function randomCenterTextPair() {
             var pairs = [
               ['<', '/>'],
@@ -178,9 +178,13 @@
             ];
             return pairs[Math.floor(Math.random()*pairs.length)];
           }
+
           var centerTextOptions = randomCenterTextPair();
+          $( ".center_text" ).empty();
           $('.center_text').append( centerTextOptions[0] + '<span class="bracanim">' + centerTextOptions[1] + '</span>');
-        })();
+        };
+
+        randomText();
         
     </script>
 </body>
