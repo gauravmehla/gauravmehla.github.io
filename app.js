@@ -35,4 +35,8 @@ app.use('/timeline', timeline);
 app.use('/blogs', blogs);
 app.use('/links', links);
 
+app.use('*', function(req, res){
+	res.render('lost');
+});
+
 module.exports = app;
