@@ -681,3 +681,6 @@
   user-drag: none; 
   -webkit-user-drag: none;
 }
+
+.red-tooltip + .tooltip > .tooltip-inner { background-color: white; color: red; font-style: italic; font-size:10px; }
+
