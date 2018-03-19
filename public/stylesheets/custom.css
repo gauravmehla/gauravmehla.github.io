@@ -682,5 +682,11 @@
   -webkit-user-drag: none;
 }
 
-.red-tooltip + .tooltip > .tooltip-inner { background-color: white; color: red; font-style: italic; font-size:10px; }
+.red-tooltip + .tooltip > .tooltip-inner { 
+  background-color: white; 
+  color: red; 
+  font-style: italic; 
+  font-size:10px; 
+  font-family: "Comic Sans MS";
+}
 
