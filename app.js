@@ -14,6 +14,7 @@ var about = require('./routes/about');
 var timeline = require('./routes/timeline');
 var blogs = require('./routes/blogs');
 var links = require('./routes/links');
+var certs = require('./routes/certs');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use('/me', about);
 app.use('/timeline', timeline);
 app.use('/blogs', blogs);
 app.use('/links', links);
+app.use('/certs', certs);
 
 app.use('*', function(req, res){
 	res.render('lost');
