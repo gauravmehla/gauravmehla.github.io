@@ -658,6 +658,7 @@
   height: 306px;
   width: 373px;
   background-image: url('../images/corner.png');
+  z-index: -1;
 }
 
 #resume-arrow {
