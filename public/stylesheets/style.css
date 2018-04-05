@@ -374,6 +374,14 @@ ul li {
     width: 200px;
 }
 
+.series_blog {
+    border-right: red 2px dashed;
+}
+
+.series_blog:hover {
+    border-right: red 8px dashed;
+}
+
 .trail { /* className for the trail elements */
     position: absolute;
     height: 3px; width: 3px;
