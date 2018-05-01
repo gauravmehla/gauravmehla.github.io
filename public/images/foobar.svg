@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="65" height="60" shape-rendering="crispEdges"><style type="text/css"><![CDATA[
+	.st0{fill:red;}
+	.st1{fill:#231F20;}
+	.st2{fill:#35BEB8;}
+]]></style><symbol id="logo" viewBox="0 -60 65 60"><path class="st0" d="M60-60H0V0h60z"/><path class="st1" d="M60-41h-5v10h5z"/><path class="st2" d="M65-41h-5v10h5z"/></symbol><use xlink:href="#logo" width="65" height="60" id="XMLID_14_" y="-60" transform="scale(1 -1)" overflow="visible"/></svg>
