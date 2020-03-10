@@ -459,3 +459,12 @@ ul li {
     border: none;
 }
 
+.amazon-badge { 
+    float: right;
+}
+
+.amazon-badge a:hover {
+    text-decoration: none;
+    border-bottom: 0px;
+}
+
