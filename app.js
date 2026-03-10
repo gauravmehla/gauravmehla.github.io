@@ -42,6 +42,7 @@
     const noPostsMsg = document.getElementById('no-posts-msg');
 
     let postsData = [];
+    let postsLoaded = false;
 
     function showView(view) {
         homeView.style.display = 'none';
@@ -56,7 +57,16 @@
         showView(notFoundView);
     }
 
+    function findPost(slug) {
+        return postsData.find(function (p) { return p.slug === slug; });
+    }
+
     async function showPost(slug) {
+        // Set title immediately from posts metadata (no async wait)
+        var post = findPost(slug);
+        var title = post ? post.title : slug.replace(/-/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+        document.title = title + ' — Gaurav Mehla';
+
         try {
             const res = await fetch('/content/blog/' + slug + '.md');
             if (!res.ok) {
@@ -67,9 +77,15 @@
             const md = await res.text();
             const html = marked.parse(md);
 
-            // Find post metadata
-            const post = postsData.find(function (p) { return p.slug === slug; });
-            const title = post ? post.title : slug;
+            // Re-check post metadata (may have loaded by now)
+            if (!post && postsLoaded) {
+                post = findPost(slug);
+                if (post) {
+                    title = post.title;
+                    document.title = title + ' — Gaurav Mehla';
+                }
+            }
+
             const date = post ? post.date : '';
 
             let metaHtml = '<h1>' + title + '</h1>';
@@ -78,7 +94,6 @@
             }
 
             postContent.innerHTML = metaHtml + html;
-            document.title = title + ' — Gaurav Mehla';
             showView(postView);
         } catch (e) {
             show404();
@@ -128,6 +143,7 @@
             const res = await fetch('/posts.json');
             if (!res.ok) return;
             postsData = await res.json();
+            postsLoaded = true;
 
             if (postsData.length === 0) {
                 noPostsMsg.style.display = 'block';
