@@ -191,6 +191,10 @@
     const tocList = document.getElementById('toc-list');
     let scrollHandler = null;
 
+    function isMobile() {
+        return window.innerWidth <= 900;
+    }
+
     function openToc() {
         tocSidebar.classList.add('is-open');
         tocOverlay.classList.add('is-visible');
@@ -206,11 +210,13 @@
         const headings = postContent.querySelectorAll('h2');
 
         if (headings.length === 0) {
-            tocToggle.style.display = 'none';
+            tocSidebar.classList.remove('has-headings');
+            tocToggle.classList.remove('has-headings');
             return;
         }
 
-        tocToggle.style.display = 'block';
+        tocSidebar.classList.add('has-headings');
+        tocToggle.classList.add('has-headings');
 
         headings.forEach(function (h, i) {
             // Assign an id to the heading for anchor links
@@ -223,11 +229,14 @@
             a.textContent = h.textContent;
             a.addEventListener('click', function (e) {
                 e.preventDefault();
-                closeToc();
-                // Small delay so sidebar closes before scroll starts
-                setTimeout(function () {
+                if (isMobile()) {
+                    closeToc();
+                    setTimeout(function () {
+                        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                } else {
                     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-                }, 100);
+                }
             });
             li.appendChild(a);
             tocList.appendChild(li);
@@ -252,7 +261,8 @@
 
     function clearToc() {
         tocList.innerHTML = '';
-        tocToggle.style.display = 'none';
+        tocSidebar.classList.remove('has-headings');
+        tocToggle.classList.remove('has-headings');
         closeToc();
         if (scrollHandler) {
             window.removeEventListener('scroll', scrollHandler);

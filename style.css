@@ -387,59 +387,39 @@ a:hover {
     position: fixed;
     top: 0;
     left: 0;
-    width: 320px;
+    width: 220px;
     height: 100vh;
     background: var(--bg);
-    z-index: 100;
-    transform: translateX(-100%);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 50;
     overflow-y: auto;
-    padding: 2rem 2rem 3rem;
-    border-right: 1px solid var(--border);
-}
-
-.toc-sidebar.is-open {
-    transform: translateX(0);
-}
-
-.toc-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 99;
+    padding: 6rem 1.5rem 3rem;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
+    transition: opacity 0.3s ease,
+                visibility 0.3s ease,
+                background-color var(--transition-speed) ease;
 }
 
-.toc-overlay.is-visible {
+.toc-sidebar.has-headings {
     opacity: 1;
     visibility: visible;
 }
 
-.toc-close {
-    background: none;
-    border: none;
-    font-size: 1.3rem;
-    cursor: pointer;
-    color: var(--text);
-    padding: 0.2rem;
-    margin-bottom: 1.5rem;
-    display: block;
-    transition: opacity 0.2s ease;
+.toc-overlay {
+    display: none;
 }
 
-.toc-close:hover {
-    opacity: 0.6;
+.toc-close {
+    display: none;
 }
 
 .toc-heading {
-    font-size: 1.4rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    margin-bottom: 1rem;
     margin-top: 0;
 }
 
@@ -450,13 +430,13 @@ a:hover {
 }
 
 .toc-list li {
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.6rem;
 }
 
 .toc-list a {
     color: var(--text-muted);
     text-decoration: none;
-    font-size: 1.05rem;
+    font-size: 0.85rem;
     line-height: 1.4;
     transition: color 0.2s ease;
 }
@@ -464,28 +444,110 @@ a:hover {
 .toc-list a:hover,
 .toc-list a.toc-active {
     color: var(--text);
+    font-weight: 700;
 }
 
 .toc-toggle {
-    background: none;
-    border: none;
-    font-size: 1.4rem;
-    cursor: pointer;
-    color: var(--text);
-    padding: 0.3rem;
-    margin-bottom: 1rem;
-    display: block;
-    transition: opacity 0.2s ease;
-    line-height: 1;
-}
-
-.toc-toggle:hover {
-    opacity: 0.6;
+    display: none;
 }
 
 /* ===========================
    Responsive
    =========================== */
+
+@media (max-width: 900px) {
+    .toc-sidebar {
+        width: 300px;
+        padding: 2rem 2rem 3rem;
+        z-index: 100;
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                    background-color var(--transition-speed) ease;
+        border-right: 1px solid var(--border);
+    }
+
+    .toc-sidebar.has-headings {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .toc-sidebar.is-open {
+        transform: translateX(0);
+    }
+
+    .toc-heading {
+        font-size: 1.2rem;
+        text-transform: none;
+        letter-spacing: normal;
+        color: var(--text);
+    }
+
+    .toc-list a {
+        font-size: 1rem;
+    }
+
+    .toc-list li {
+        margin-bottom: 0.8rem;
+    }
+
+    .toc-close {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.3rem;
+        cursor: pointer;
+        color: var(--text);
+        padding: 0.2rem;
+        margin-bottom: 1.5rem;
+        transition: opacity 0.2s ease;
+    }
+
+    .toc-close:hover {
+        opacity: 0.6;
+    }
+
+    .toc-overlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 99;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+
+    .toc-overlay.is-visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .toc-toggle {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.4rem;
+        cursor: pointer;
+        color: var(--text);
+        padding: 0.3rem;
+        margin-bottom: 1rem;
+        line-height: 1;
+        transition: opacity 0.2s ease;
+    }
+
+    .toc-toggle.has-headings {
+        display: block;
+    }
+
+    .toc-toggle:hover {
+        opacity: 0.6;
+    }
+}
 
 @media (max-width: 600px) {
     html {
