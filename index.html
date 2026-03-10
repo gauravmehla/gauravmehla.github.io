@@ -70,8 +70,19 @@
             </section>
         </div>
 
+        <!-- Table of Contents sidebar -->
+        <aside id="toc-sidebar" class="toc-sidebar">
+            <button id="toc-close" class="toc-close" aria-label="Close table of contents">✕</button>
+            <nav class="toc-nav">
+                <h2 class="toc-heading">Contents</h2>
+                <ol id="toc-list" class="toc-list"></ol>
+            </nav>
+        </aside>
+        <div id="toc-overlay" class="toc-overlay"></div>
+
         <!-- Blog post view (rendered dynamically) -->
         <div id="post-view" style="display:none;">
+            <button id="toc-toggle" class="toc-toggle" aria-label="Show table of contents" style="display:none;">☰</button>
             <a href="/" class="back-link" id="back-link">← Back</a>
             <article id="post-content"></article>
         </div>

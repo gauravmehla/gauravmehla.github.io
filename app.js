@@ -94,6 +94,7 @@
             }
 
             postContent.innerHTML = metaHtml + html;
+            buildToc();
             showView(postView);
         } catch (e) {
             show404();
@@ -102,6 +103,7 @@
 
     function showHome() {
         document.title = 'Gaurav Mehla';
+        clearToc();
         showView(homeView);
     }
 
@@ -177,6 +179,90 @@
             // silently fail — show the "coming soon" message
         }
     }
+
+    // ===========================
+    // Table of Contents
+    // ===========================
+
+    const tocSidebar = document.getElementById('toc-sidebar');
+    const tocOverlay = document.getElementById('toc-overlay');
+    const tocToggle = document.getElementById('toc-toggle');
+    const tocClose = document.getElementById('toc-close');
+    const tocList = document.getElementById('toc-list');
+    let scrollHandler = null;
+
+    function openToc() {
+        tocSidebar.classList.add('is-open');
+        tocOverlay.classList.add('is-visible');
+    }
+
+    function closeToc() {
+        tocSidebar.classList.remove('is-open');
+        tocOverlay.classList.remove('is-visible');
+    }
+
+    function buildToc() {
+        tocList.innerHTML = '';
+        const headings = postContent.querySelectorAll('h2');
+
+        if (headings.length === 0) {
+            tocToggle.style.display = 'none';
+            return;
+        }
+
+        tocToggle.style.display = 'block';
+
+        headings.forEach(function (h, i) {
+            // Assign an id to the heading for anchor links
+            var id = h.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            h.id = id;
+
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.href = '#' + id;
+            a.textContent = h.textContent;
+            a.addEventListener('click', function (e) {
+                e.preventDefault();
+                closeToc();
+                // Small delay so sidebar closes before scroll starts
+                setTimeout(function () {
+                    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            });
+            li.appendChild(a);
+            tocList.appendChild(li);
+        });
+
+        // Scroll spy — highlight active section
+        if (scrollHandler) window.removeEventListener('scroll', scrollHandler);
+        scrollHandler = function () {
+            var currentId = '';
+            headings.forEach(function (h) {
+                var rect = h.getBoundingClientRect();
+                if (rect.top <= 120) {
+                    currentId = h.id;
+                }
+            });
+            tocList.querySelectorAll('a').forEach(function (a) {
+                a.classList.toggle('toc-active', a.getAttribute('href') === '#' + currentId);
+            });
+        };
+        window.addEventListener('scroll', scrollHandler, { passive: true });
+    }
+
+    function clearToc() {
+        tocList.innerHTML = '';
+        tocToggle.style.display = 'none';
+        closeToc();
+        if (scrollHandler) {
+            window.removeEventListener('scroll', scrollHandler);
+            scrollHandler = null;
+        }
+    }
+
+    tocToggle.addEventListener('click', openToc);
+    tocClose.addEventListener('click', closeToc);
+    tocOverlay.addEventListener('click', closeToc);
 
     // ===========================
     // Internal link handling
