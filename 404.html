@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+        // GitHub Pages SPA redirect trick
+        // Encodes the current path into a query param and redirects to index.html
+        // The SPA router in app.js reads ?p= and navigates to the correct route
+        var path = window.location.pathname;
+        var search = window.location.search;
+        var hash = window.location.hash;
+        window.location.replace(
+            window.location.origin + '/?p=' + encodeURIComponent(path) +
+            (search ? '&q=' + encodeURIComponent(search) : '') +
+            hash
+        );
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>
