@@ -10,24 +10,26 @@
     function getPreferredTheme() {
         const saved = localStorage.getItem(THEME_KEY);
         if (saved) return saved;
-        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'terminal' : 'paper';
     }
 
     function applyTheme(theme) {
         document.body.className = 'theme-' + theme;
-        const radio = document.getElementById('theme-' + theme);
-        if (radio) radio.checked = true;
+        const btn = document.getElementById('theme-toggle');
+        if (btn) btn.textContent = theme === 'paper' ? '☾' : '☀';
         localStorage.setItem(THEME_KEY, theme);
     }
 
     function initTheme() {
         applyTheme(getPreferredTheme());
 
-        document.querySelectorAll('.theme-toggle input[type="radio"]').forEach(function (radio) {
-            radio.addEventListener('change', function () {
-                applyTheme(this.value);
+        const btn = document.getElementById('theme-toggle');
+        if (btn) {
+            btn.addEventListener('click', function () {
+                const current = localStorage.getItem(THEME_KEY) || 'paper';
+                applyTheme(current === 'paper' ? 'terminal' : 'paper');
             });
-        });
+        }
     }
 
     // ===========================
@@ -40,6 +42,7 @@
     const postContent = document.getElementById('post-content');
     const postsList = document.getElementById('posts-list');
     const noPostsMsg = document.getElementById('no-posts-msg');
+    const postDateBc = document.getElementById('post-date-bc');
 
     let postsData = [];
     let postsLoaded = false;
@@ -59,6 +62,20 @@
 
     function findPost(slug) {
         return postsData.find(function (p) { return p.slug === slug; });
+    }
+
+    function formatDate(dateStr) {
+        const d = new Date(dateStr + 'T00:00:00');
+        return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    function formatDateShort(dateStr) {
+        const d = new Date(dateStr + 'T00:00:00');
+        return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function getYear(dateStr) {
+        return dateStr ? dateStr.substring(0, 4) : '';
     }
 
     async function showPost(slug) {
@@ -88,6 +105,11 @@
 
             const date = post ? post.date : '';
 
+            // Update breadcrumb date
+            if (postDateBc) {
+                postDateBc.textContent = date ? formatDateShort(date) : '';
+            }
+
             let metaHtml = '<h1>' + title + '</h1>';
             if (date) {
                 metaHtml += '<p class="post-meta">' + formatDate(date) + '</p>';
@@ -105,11 +127,6 @@
         document.title = 'Gaurav Mehla';
         clearToc();
         showView(homeView);
-    }
-
-    function formatDate(dateStr) {
-        const d = new Date(dateStr + 'T00:00:00');
-        return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     }
 
     function navigate() {
@@ -168,8 +185,8 @@
 
                 if (post.date) {
                     const span = document.createElement('span');
-                    span.className = 'post-date';
-                    span.textContent = formatDate(post.date);
+                    span.className = 'post-year';
+                    span.textContent = getYear(post.date);
                     li.appendChild(span);
                 }
 
@@ -279,13 +296,6 @@
     // ===========================
 
     function initLinks() {
-        // Home link
-        document.getElementById('home-link').addEventListener('click', function (e) {
-            e.preventDefault();
-            window.history.pushState(null, '', '/');
-            navigate();
-        });
-
         // Back link
         document.getElementById('back-link').addEventListener('click', function (e) {
             e.preventDefault();
