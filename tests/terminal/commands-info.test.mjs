@@ -16,14 +16,14 @@ test('help lists visible commands with usage and summary, and hides eggs', () =>
     const ctx = fakeCtx({ registry: [help, ls, egg] });
     const out = texts(help.run([], ctx));
     assert.equal(out[0], 'Commands');
-    assert.ok(out.some((l) => l.includes('ls [posts|projects]') && l.includes('list posts and projects')));
+    assert.ok(out.some((l) => l.includes('ls [folder]') && l.includes('list posts and projects')));
     assert.ok(!out.some((l) => l.includes('ask')));
     assert.equal(out[out.length - 1], 'Tab completes · ↑ ↓ history · Esc closes');
 });
 
 test('help <command> shows its usage', () => {
     const ctx = fakeCtx({ registry: [help, ls, egg] });
-    assert.deepEqual(texts(help.run(['ls'], ctx)), ['ls [posts|projects]', 'list posts and projects']);
+    assert.deepEqual(texts(help.run(['ls'], ctx)), ['ls [folder]', 'list posts and projects']);
 });
 
 test('help never reveals hidden commands', () => {

@@ -28,7 +28,7 @@ command, and smiles (or shares it).
 - Every command lives in its own file, so future easter eggs and games are
   one-file additions.
 
-**Not in v1:** games, a fake filesystem with `cd`, persistent history across
+**Not in v1:** games, nested folders or files, persistent history across
 visits, a terminal icon on post pages (the shortcut still works there).
 
 ---
@@ -76,7 +76,7 @@ guest@mehla.in:~$ █
 
 ### Typing aids
 
-- **Tab** completes command names, post slugs and `open` targets. If more
+- **Tab** completes command names, folder names, post slugs and `open` targets. If more
   than one match is possible, it lists them.
 - **↑ / ↓** move through the commands typed in this visit.
 - **Ctrl+L** clears the screen, the same as `clear`.
@@ -109,9 +109,11 @@ visitors still learn it without the keyboard popping up.
 | Command | Behaviour |
 | --- | --- |
 | `help` | Lists the commands below, with one-line descriptions. `help <cmd>` shows usage. |
-| `ls` | Prints `posts/  projects/`. |
+| `ls` | Lists the current folder: at home, `posts/  projects/`; inside a folder, its contents. `ls <folder>` and `ls ..` list another folder. |
 | `ls posts` | Numbered list, newest first: `1  2026-09-30  My Agents Never Said "I Don't Know"`. |
 | `ls projects` | Each project: name, tech, one-line description. |
+| `cd [folder]` | Moves to `posts`, `projects`, `..` or home (`cd`, `cd ~`). The prompt shows the folder (`guest@mehla.in:~/posts$`). Forgiving: a folder name works from anywhere, so `cd projects` works from inside `posts`. Unknown: `cd: <x>: no such directory`. |
+| `pwd` | Prints the current folder, e.g. `/home/guest/posts`. |
 | `cat <post>` | Prints the post as readable text: title, date, headings, paragraphs and lists. Long posts scroll. Ends with `→ open <slug> to read it on the page`. |
 | `open <target>` | Post: navigates to it. `github`, `linkedin`, `twitter`, `email`, `rss`: opens that link (external links in a new tab). `home`: goes to `/`. |
 | `whoami` | The bio, as plain text. |
@@ -158,6 +160,7 @@ assets/js/terminal/
   terminal.js                    UI: panel DOM, input, history, rendering, focus, open/close
   shell.js                       pure logic: parse a line, resolve the command, run it, Tab completion
   resolve.js                     pure: find a post from a number, slug or prefix
+  fs.js                          pure: the pretend folders (~, posts, projects), cd/ls path rules
   post-text.js                   turn a fetched post page into lines of text
   registry.js                    the list of commands (the only file to edit when adding one)
   commands/
@@ -197,6 +200,7 @@ export default {
 | `ctx.navigate(url, { newTab })` | Goes to a page or link |
 | `ctx.getTheme()` | The current theme name |
 | `ctx.setTheme(name)` | Applies a theme the same way the toggle does |
+| `ctx.cwd` / `ctx.setCwd(dir)` | The current folder (`~`, `~/posts`, `~/projects`); setting it updates the prompt |
 | `ctx.fetchPost(url)` | Fetches a post page and returns its lines |
 
 **Output is data, not HTML.** A command returns an array of lines. Each line

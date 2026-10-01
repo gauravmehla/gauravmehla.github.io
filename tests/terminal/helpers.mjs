@@ -25,17 +25,19 @@ export const DATA = {
 
 // A ctx like the one terminal.js builds, recording side effects in ctx.calls.
 export function fakeCtx(overrides = {}) {
-    const calls = { navigate: [], setTheme: [], fetchPost: [], clear: 0, close: 0 };
+    const calls = { navigate: [], setTheme: [], fetchPost: [], setCwd: [], clear: 0, close: 0 };
     const ctx = {
         registry: [],
         data: structuredClone(DATA),
         history: [],
         theme: 'paper',
+        cwd: '~',
         clear() { calls.clear++; },
         close() { calls.close++; },
         navigate(url, opts = {}) { calls.navigate.push({ url, newTab: !!opts.newTab }); },
         getTheme() { return ctx.theme; },
         setTheme(name) { calls.setTheme.push(name); ctx.theme = name; },
+        setCwd(dir) { calls.setCwd.push(dir); ctx.cwd = dir; },
         async fetchPost(url) { calls.fetchPost.push(url); return ['Body paragraph.']; },
         calls,
         ...overrides,

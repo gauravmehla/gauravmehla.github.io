@@ -5,9 +5,9 @@ import registry from './registry.js';
 import { execute, complete } from './shell.js';
 import { STYLES, muted } from './lines.js';
 import { articleToLines } from './post-text.js';
+import { HOME } from './fs.js';
 
 const DATA_URL = '/assets/terminal.json';
-const PROMPT = 'guest@mehla.in:~$';
 const THEME_KEY = 'gm-theme';
 const CHIPS = ['help', 'ls posts', 'whoami', 'contact', 'exit'];
 const TOUCH = '(pointer: coarse)';
@@ -28,6 +28,9 @@ function el(tag, className, attrs = {}) {
     return node;
 }
 
+// The prompt for a folder: guest@mehla.in:~/posts$
+const promptFor = (cwd) => `guest@mehla.in:${cwd}$`;
+
 function buildPanel(isTouch) {
     const root = el('div', 'terminal-root');
     const backdrop = el('div', 'terminal-backdrop');
@@ -37,7 +40,7 @@ function buildPanel(isTouch) {
     const output = el('div', 'terminal-output', { 'aria-live': 'polite' });
     const form = el('form', 'terminal-form');
     const prompt = el('label', 'terminal-prompt', { for: 'terminal-input' });
-    prompt.textContent = PROMPT;
+    prompt.textContent = promptFor(HOME);
     const input = el('input', 'terminal-input', {
         id: 'terminal-input', type: 'text', autocomplete: 'off', autocapitalize: 'off',
         autocorrect: 'off', spellcheck: 'false', enterkeyhint: 'send',
@@ -56,7 +59,7 @@ function buildPanel(isTouch) {
     }
     panel.append(form);
     root.append(backdrop, panel);
-    return { root, backdrop, panel, output, input, form };
+    return { root, backdrop, panel, output, input, form, prompt };
 }
 
 // One line of output → one element. Text only: never innerHTML.
@@ -115,6 +118,11 @@ export function createTerminal() {
         document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: name } }));
     }
 
+    function setCwd(dir) {
+        ctx.cwd = dir;
+        ui.prompt.textContent = promptFor(dir);
+    }
+
     async function fetchPost(url) {
         const res = await fetch(url);
         if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
@@ -154,7 +162,10 @@ export function createTerminal() {
         else open(from);
     }
 
-    const ctx = { registry, data: null, history: [], clear, close, navigate, getTheme, setTheme, fetchPost };
+    const ctx = {
+        registry, data: null, history: [], cwd: HOME,
+        clear, close, navigate, getTheme, setTheme, setCwd, fetchPost,
+    };
 
     const ready = fetch(DATA_URL)
         .then((res) => (res.ok ? res.json() : null))
@@ -170,7 +181,7 @@ export function createTerminal() {
     });
 
     async function run(line) {
-        print([{ text: `${PROMPT} ${line}`, style: 'echo' }]);
+        print([{ text: `${promptFor(ctx.cwd)} ${line}`, style: 'echo' }]);
         if (line.trim()) ctx.history.push(line.trim());
         historyIndex = ctx.history.length;
         await ready;
@@ -189,7 +200,7 @@ export function createTerminal() {
             e.preventDefault();
             const result = complete(registry, ui.input.value, ctx);
             if (result.options.length > 0) {
-                print([{ text: `${PROMPT} ${ui.input.value}`, style: 'echo' }, result.options.join('  ')]);
+                print([{ text: `${promptFor(ctx.cwd)} ${ui.input.value}`, style: 'echo' }, result.options.join('  ')]);
             }
             ui.input.value = result.line;
         } else if (e.key === 'ArrowUp') {
