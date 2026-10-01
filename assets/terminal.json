@@ -36,6 +36,7 @@ sitemap: false
         }{% unless forloop.last %},{% endunless %}
         {%- endfor %}
     ],
+    "stack": {{ site.data.stack | jsonify }},
     "links": [
         {%- for link in site.data.social %}
         {

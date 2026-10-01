@@ -4,7 +4,7 @@ import registry from '../../assets/js/terminal/registry.js';
 import { execute } from '../../assets/js/terminal/shell.js';
 import { fakeCtx, texts } from './helpers.mjs';
 
-const VISIBLE = ['help', 'ls', 'cd', 'pwd', 'cat', 'open', 'whoami', 'contact', 'theme', 'history', 'clear', 'exit'];
+const VISIBLE = ['help', 'ls', 'cd', 'pwd', 'cat', 'open', 'whoami', 'contact', 'theme', 'neofetch', 'history', 'clear', 'exit'];
 
 test('every command has the fields the shell relies on', () => {
     for (const c of registry) {

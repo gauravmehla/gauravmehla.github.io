@@ -6,20 +6,12 @@ import { execute, complete } from './shell.js';
 import { STYLES, muted } from './lines.js';
 import { articleToLines } from './post-text.js';
 import { HOME } from './fs.js';
+import { LOGO, LOGO_WIDTH } from './art.js';
 
 const DATA_URL = '/assets/terminal.json';
 const THEME_KEY = 'gm-theme';
 const CHIPS = ['help', 'ls posts', 'whoami', 'contact', 'exit'];
 const TOUCH = '(pointer: coarse)';
-const NARROW = '(max-width: 420px)';  // narrower than the banner art
-
-// `mehla.in` in figlet's "small" font (33 columns)
-const BANNER = [
-    '            _    _        _',
-    '  _ __  ___| |_ | |__ _  (_)_ _',
-    " | '  \\/ -_) ' \\| / _` |_| | ' \\",
-    ' |_|_|_\\___|_||_|_\\__,_(_)_|_||_|',
-];
 
 function el(tag, className, attrs = {}) {
     const node = document.createElement(tag);
@@ -118,6 +110,18 @@ export function createTerminal() {
         document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: name } }));
     }
 
+    // How many monospace characters fit on one output line
+    function columns() {
+        const probe = el('span');
+        probe.textContent = 'x'.repeat(10);
+        ui.output.append(probe);
+        const charWidth = probe.getBoundingClientRect().width / 10;
+        probe.remove();
+        const style = getComputedStyle(ui.output);
+        const usable = ui.output.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+        return charWidth > 0 ? Math.floor(usable / charWidth) : 80;
+    }
+
     function setCwd(dir) {
         ctx.cwd = dir;
         ui.prompt.textContent = promptFor(dir);
@@ -165,6 +169,7 @@ export function createTerminal() {
     const ctx = {
         registry, data: null, history: [], cwd: HOME,
         clear, close, navigate, getTheme, setTheme, setCwd, fetchPost,
+        get columns() { return columns(); },
     };
 
     const ready = fetch(DATA_URL)
@@ -175,7 +180,7 @@ export function createTerminal() {
         });
 
     ready.then(() => {
-        const art = window.matchMedia(NARROW).matches ? ['mehla.in'] : BANNER;
+        const art = columns() < LOGO_WIDTH ? ['mehla.in'] : LOGO;
         const tagline = ctx.data ? ctx.data.site.tagline + '.' : '';
         print([...art, '', tagline, muted("Type 'help' to see what you can do."), '']);
     });

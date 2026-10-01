@@ -119,6 +119,7 @@ visitors still learn it without the keyboard popping up.
 | `whoami` | The bio, as plain text. |
 | `contact` | Email and social links, each clickable. |
 | `theme [paper\|terminal]` | Switches the site theme, the same as the toggle button. With no argument, prints the current theme. |
+| `neofetch` | Logo plus fake system info (OS, host, shell, uptime, theme, post and project counts, stack). Side by side when it fits, info under the logo when it doesn't. |
 | `history` | Commands typed this visit, numbered. |
 | `clear` | Clears the screen. |
 | `exit` | Closes the terminal. |
@@ -160,6 +161,7 @@ assets/js/terminal/
   terminal.js                    UI: panel DOM, input, history, rendering, focus, open/close
   shell.js                       pure logic: parse a line, resolve the command, run it, Tab completion
   resolve.js                     pure: find a post from a number, slug or prefix
+  art.js                         the ASCII logo (banner + neofetch)
   fs.js                          pure: the pretend folders (~, posts, projects), cd/ls path rules
   post-text.js                   turn a fetched post page into lines of text
   registry.js                    the list of commands (the only file to edit when adding one)
@@ -200,6 +202,7 @@ export default {
 | `ctx.navigate(url, { newTab })` | Goes to a page or link |
 | `ctx.getTheme()` | The current theme name |
 | `ctx.setTheme(name)` | Applies a theme the same way the toggle does |
+| `ctx.columns` | How many characters fit on one output line (for layout) |
 | `ctx.cwd` / `ctx.setCwd(dir)` | The current folder (`~`, `~/posts`, `~/projects`); setting it updates the prompt |
 | `ctx.fetchPost(url)` | Fetches a post page and returns its lines |
 

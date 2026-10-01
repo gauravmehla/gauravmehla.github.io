@@ -17,6 +17,7 @@ export const DATA = {
         { name: 'Admin Platform', tech: 'Go / Kubernetes', description: 'An internal platform.', url: null },
         { name: 'The JavaScript Workshop', tech: 'Packt Publishing', description: 'A book.', url: 'https://example.com/book' },
     ],
+    stack: ['Go', 'Node.js', 'React'],
     links: [
         { key: 'email', label: 'Email', url: 'mailto:gaurav@mehla.in' },
         { key: 'github', label: 'GitHub', url: 'https://github.com/gauravmehla' },
@@ -32,6 +33,7 @@ export function fakeCtx(overrides = {}) {
         history: [],
         theme: 'paper',
         cwd: '~',
+        columns: 120,
         clear() { calls.clear++; },
         close() { calls.close++; },
         navigate(url, opts = {}) { calls.navigate.push({ url, newTab: !!opts.newTab }); },
