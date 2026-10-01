@@ -17,7 +17,8 @@ export default {
         if (args.length === 0) return [error('usage: open <target>')];
         const target = args[0].toLowerCase();
 
-        if (SITE_TARGETS[target]) {
+        // hasOwn, so 'constructor' and friends aren't treated as targets
+        if (Object.hasOwn(SITE_TARGETS, target)) {
             ctx.navigate(SITE_TARGETS[target], { newTab: target === 'rss' });
             return [`opening ${target}…`];
         }

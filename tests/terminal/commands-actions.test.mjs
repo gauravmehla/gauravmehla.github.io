@@ -86,3 +86,13 @@ test('easter eggs are hidden and reply as specified', () => {
     assert.deepEqual(byName.sudo.run(['ls'], fakeCtx()), ['Nice try. This incident will be reported.']);
     assert.deepEqual(byName.rm.run(['-rf', '/'], fakeCtx()), ['rm: permission denied. Nice try, though.']);
 });
+
+test('open ignores object built-ins like constructor and __proto__', () => {
+    for (const name of ['constructor', '__proto__', 'toString']) {
+        const ctx = fakeCtx();
+        assert.deepEqual(open.run([name], ctx), [
+            { text: `open: ${name}: no such post or link. Try 'ls posts' or 'contact'.`, style: 'error' },
+        ], name);
+        assert.deepEqual(ctx.calls.navigate, [], name);
+    }
+});

@@ -12,7 +12,7 @@ deploys it on every push to `master`.
 | --- | --- |
 | Write a post | Add `_posts/YYYY-MM-DD-slug.md` with `title` and `description` front matter |
 | Change projects | Edit `_data/projects.yml` |
-| Change the bio | Edit the top of `index.html` |
+| Change the bio | Edit `_data/profile.yml` (one entry per paragraph) |
 | Preview locally | `make serve`, then open http://localhost:4000 (needs Docker) |
 | Check before shipping | `make check` |
 

@@ -14,6 +14,8 @@ export function articleToLines(article) {
     for (const el of Array.from(article.children)) {
         const tag = el.tagName.toUpperCase();
         const classes = String(el.className || '').split(/\s+/);
+        // Jekyll wraps code blocks: <div class="highlighter-rouge"><div><pre>
+        const pre = tag === 'PRE' ? el : (el.querySelector && el.querySelector('pre'));
 
         // The layout prints the title and date; cat prints its own.
         if (tag === 'H1' || classes.includes('post-meta')) continue;
@@ -27,8 +29,8 @@ export function articleToLines(article) {
                 lines.push(`  ${marker} ${clean(li.textContent)}`);
             });
             gap();
-        } else if (tag === 'PRE') {
-            el.textContent.replace(/\n$/, '').split('\n').forEach((l) => lines.push(`    ${l}`));
+        } else if (pre) {
+            pre.textContent.replace(/\n$/, '').split('\n').forEach((l) => lines.push(`    ${l}`));
             gap();
         } else if (tag === 'BLOCKQUOTE') {
             lines.push(`  │ ${clean(el.textContent)}`);

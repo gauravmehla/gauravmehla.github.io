@@ -42,3 +42,13 @@ test('drops empty paragraphs and never ends on a blank line', () => {
     const article = el('ARTICLE', '', [el('P', 'A'), el('P', '   '), el('P', 'B')]);
     assert.deepEqual(articleToLines(article), ['A', '', 'B']);
 });
+
+test('keeps line breaks in code blocks wrapped the way Jekyll renders them', () => {
+    // Jekyll/rouge output: <div class="language-js highlighter-rouge"><div class="highlight"><pre>…
+    const pre = el('PRE', 'const a = 1;\nconst b = 2;\n');
+    const inner = el('DIV', pre.textContent, [pre], 'highlight');
+    const wrapper = el('DIV', pre.textContent, [inner], 'language-js highlighter-rouge');
+    wrapper.querySelector = (sel) => (sel === 'pre' ? pre : null);
+    const article = el('ARTICLE', '', [el('P', 'Before.'), wrapper, el('P', 'After.')]);
+    assert.deepEqual(articleToLines(article), ['Before.', '', '    const a = 1;', '    const b = 2;', '', 'After.']);
+});

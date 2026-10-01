@@ -10,6 +10,12 @@
     box-sizing: border-box;
 }
 
+// Keep [hidden] hidden even when a component sets display (e.g. .icon-btn),
+// so JS-only controls like the >_ button stay out of sight without JS
+[hidden] {
+    display: none !important;
+}
+
 html {
     font-size: 18px;
     scroll-behavior: smooth;

@@ -61,8 +61,9 @@ the file is display order. Only one project should carry `badge: Now`.
 
 ## Changing the bio
 
-Edit the two paragraphs at the top of `index.html`. Keep them to the role, the
-city, and what Gaurav is working on now, in general terms.
+Edit `_data/profile.yml`: one entry per paragraph, Markdown with *italics*
+only (the terminal shows the bio as plain text with asterisks removed). Keep
+it to the role, the city, and what Gaurav is working on now, in general terms.
 
 ## Adding a terminal command or easter egg
 
