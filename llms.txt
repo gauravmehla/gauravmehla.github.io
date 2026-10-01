@@ -1,0 +1,33 @@
+---
+# Site summary for AI agents and LLMs, following https://llmstxt.org.
+# Generated from the same data as the homepage, so it stays in sync and
+# never shows anything the site doesn't.
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+# {{ site.title }}
+
+> {{ site.tagline }}. Personal site of {{ site.author }}, a senior full-stack engineer in Vancouver writing essays on technology, software, and AI agents.
+
+Gaurav has over a decade of experience building for the web: leading engineering teams, designing scalable systems, and writing code across the stack. This site is not a résumé; it's a place for ideas. Posts are the primary content.
+
+## Writing
+{% for post in site.posts %}
+- [{{ post.title }}]({{ post.url | absolute_url }}): {{ post.description }}
+{%- endfor %}
+
+## Projects
+{% for project in site.data.projects %}
+- {% if project.url %}[{{ project.name }}]({{ project.url }}){% else %}{{ project.name }}{% endif %} ({{ project.tech }}): {{ project.description }}
+{%- endfor %}
+
+## Elsewhere
+{% for link in site.data.social %}
+- [{{ link.label }}]({{ link.url }})
+{%- endfor %}
+
+## Optional
+
+- [RSS feed]({{ "/feed.xml" | absolute_url }}): all posts with full content
+- [Sitemap]({{ "/sitemap.xml" | absolute_url }})

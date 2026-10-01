@@ -40,7 +40,7 @@ done
 
 # 3. Required pages
 before=$failures
-for page in index.html 404.html feed.xml sitemap.xml assets/css/main.css assets/terminal.json; do
+for page in index.html 404.html feed.xml sitemap.xml llms.txt assets/css/main.css assets/terminal.json; do
     [ -f "_site/$page" ] || fail "_site/$page was not generated"
 done
 [ "$failures" -eq "$before" ] && pass "required pages generated"

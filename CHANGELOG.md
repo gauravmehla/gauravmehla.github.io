@@ -11,6 +11,8 @@ _Nothing yet._
 ## 2026-09-30 (later)
 
 ### Added
+- `/llms.txt`: a summary of the site for AI agents, generated from the
+  posts and project data.
 - A terminal: press `` ` `` (or click `>_` on the homepage) to browse posts,
   projects and links by typing commands (`ls`, `cd`, `cat`, `open`, `neofetch`…), with Tab
   completion. There may be a few hidden ones.

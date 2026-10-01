@@ -51,6 +51,7 @@ assets/
   js/terminal/              the terminal: shell, commands/, UI (see docs/specs/)
   terminal.json             terminal data, generated from posts + _data/
 index.html                  homepage
+llms.txt                    site summary for AI agents (generated)
 404.html                    not-found page (GitHub Pages serves it automatically)
 scripts/check.sh            pre-publish checks (run by `make check`)
 tests/terminal/             unit tests for the terminal (`make test`)
@@ -78,6 +79,7 @@ set of CSS custom properties in `_sass/_tokens.scss`, selected by a class on
 | `/` | `index.html` |
 | `/blog/<slug>` | `_posts/YYYY-MM-DD-<slug>.md` (permalink `/blog/:title`) |
 | `/feed.xml` | jekyll-feed |
+| `/llms.txt` | `llms.txt`: site summary for AI agents ([llmstxt.org](https://llmstxt.org)), generated from posts + `_data/` |
 | `/sitemap.xml`, `/robots.txt` | jekyll-sitemap |
 | anything else | `404.html`, served with a real 404 status |
 
