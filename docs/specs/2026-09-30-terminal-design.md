@@ -1,6 +1,6 @@
 # Terminal: design spec
 
-**Status:** draft for review · **Date:** 2026-09-30 · **Branch:** `terminal`
+**Status:** approved and implemented · **Date:** 2026-09-30 · **Branch:** `terminal`
 
 A drop-down terminal that lets curious, technical visitors explore mehla.in by
 typing commands. It's an optional extra on top of the site, not a replacement
@@ -84,16 +84,17 @@ guest@mehla.in:~$ █
 ### Phones
 
 On touch devices (`pointer: coarse`), a row of tap chips sits above the
-input: `help` · `ls posts` · `whoami` · `contact` · `exit`. Tapping a chip types
-the command into the input and runs it, so visitors see what happened and
-learn the command.
+input: `help` · `ls posts` · `whoami` · `contact` · `exit`. Tapping a chip runs the
+command; the echoed `guest@mehla.in:~$ <command>` line shows what ran, so
+visitors still learn it without the keyboard popping up.
 
 ### Accessibility
 
 - The panel is a `role="dialog"` with `aria-modal="true"` and the label
   "Terminal".
-- Focus moves to the input on open, stays inside the panel while it's open,
-  and returns to the opener on close.
+- Focus moves to the input on open (on touch devices, to the panel instead,
+  so the keyboard doesn't cover the chips), stays inside the panel while
+  it's open, and returns to the opener on close.
 - The output region is `aria-live="polite"`, so screen readers announce
   results.
 - The `>_` icon is a real `<button>` with the accessible name "Open terminal"
@@ -189,17 +190,23 @@ export default {
 | `ctx` member | What it does |
 | --- | --- |
 | `ctx.data` | The parsed `terminal.json` (or `null` if it failed to load) |
+| `ctx.registry` | All commands (used by `help` and completion) |
 | `ctx.history` | This visit's commands |
 | `ctx.clear()` | Clears the screen |
 | `ctx.close()` | Closes the terminal |
 | `ctx.navigate(url, { newTab })` | Goes to a page or link |
+| `ctx.getTheme()` | The current theme name |
 | `ctx.setTheme(name)` | Applies a theme the same way the toggle does |
+| `ctx.fetchPost(url)` | Fetches a post page and returns its lines |
 
 **Output is data, not HTML.** A command returns an array of lines. Each line
 is a string, or `{ text, href }` for a link, or `{ text, style }` where
 `style` is one of a fixed set (`heading`, `muted`, `error`). The renderer
 creates text nodes only and never uses `innerHTML`, so nothing in a post or
 in data can inject markup.
+
+`commands/eggs.js` exports an array of hidden commands, which `registry.js`
+spreads in.
 
 Adding a game later means one new file in `commands/` plus one line in
 `registry.js`. A game that needs the whole panel can be given a

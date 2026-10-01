@@ -63,3 +63,14 @@ the file is display order. Only one project should carry `badge: Now`.
 
 Edit the two paragraphs at the top of `index.html`. Keep them to the role, the
 city, and what Gaurav is working on now, in general terms.
+
+## Adding a terminal command or easter egg
+
+1. Create `assets/js/terminal/commands/<name>.js` exporting
+   `{ name, summary, usage, run(args, ctx) }`. Add `hidden: true` for an
+   easter egg; it then never shows up in `help` or Tab completion.
+2. Add it to `assets/js/terminal/registry.js`.
+3. Add a test in `tests/terminal/` and run `make test`.
+
+Replies are site content, so the rules above apply. Keep them short and
+kind.

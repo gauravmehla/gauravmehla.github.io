@@ -21,6 +21,7 @@ don't depend on JavaScript.
 ```
 _config.yml                 site title/tagline, permalinks, plugins, build excludes
 _data/
+  profile.yml               bio paragraphs (homepage + terminal)
   projects.yml              homepage projects list
   social.yml                footer links
   stack.yml                 "Core Stack" line under the bio
@@ -36,19 +37,25 @@ _posts/                     one Markdown file per post
 _sass/
   _tokens.scss              colours (CSS custom properties), fonts, breakpoints
   _base.scss                reset, typography, page width
-  _home.scss                bio, theme button, writing list, projects
+  _home.scss                bio, header buttons, writing list, projects
   _post.scss                post page typography
   _toc.scss                 table of contents (sidebar on desktop, drawer on mobile)
   _not-found.scss           404 page
+  _terminal.scss            terminal panel, chips, >_ button
   _footer.scss              footer
 assets/
   css/main.scss             imports the partials above, in order
   js/theme.js               theme toggle button (every page)
   js/toc.js                 table of contents (post pages only)
+  js/terminal-loader.js     every page: ` or >_ loads the terminal on first use
+  js/terminal/              the terminal: shell, commands/, UI (see docs/specs/)
+  terminal.json             terminal data, generated from posts + _data/
 index.html                  homepage
 404.html                    not-found page (GitHub Pages serves it automatically)
 scripts/check.sh            pre-publish checks (run by `make check`)
-Makefile                    serve / build / check via Docker
+tests/terminal/             unit tests for the terminal (`make test`)
+docs/specs/, docs/plans/    design specs and implementation plans
+Makefile                    serve / build / test / check via Docker
 ```
 
 ## Themes
@@ -77,6 +84,12 @@ set of CSS custom properties in `_sass/_tokens.scss`, selected by a class on
 ## Decisions
 
 Newest first. Record new ones here when they're made.
+
+- **2026-09-30 — Terminal loads on first use and renders text only.**
+  Visitors who never open it download only the small loader (under 700
+  bytes gzipped). Commands return plain-data lines rendered with
+  `textContent`, so no post or data can inject markup. Design:
+  [specs/2026-09-30-terminal-design.md](specs/2026-09-30-terminal-design.md).
 
 - **2026-09-30 — Jekyll instead of a client-side SPA.** The previous version
   rendered everything in the browser (a JS router, `marked.js` from a CDN, and

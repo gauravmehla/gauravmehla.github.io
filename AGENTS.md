@@ -25,7 +25,7 @@ Humans: start with [README.md](README.md) instead.
 
 | Want to change… | Edit |
 | --- | --- |
-| Bio text | `index.html` (top section) |
+| Bio text | `_data/profile.yml` |
 | Projects list | `_data/projects.yml` |
 | Core stack line | `_data/stack.yml` |
 | Footer / social links | `_data/social.yml` (+ icon in `_includes/icons/`) |
@@ -33,6 +33,7 @@ Humans: start with [README.md](README.md) instead.
 | A post | `_posts/YYYY-MM-DD-slug.md` |
 | Styles | `_sass/_<area>.scss` (colours in `_tokens.scss`) |
 | Page shells | `_layouts/default.html`, `_layouts/post.html` |
+| Terminal commands / easter eggs | `assets/js/terminal/commands/` (+ `registry.js`) |
 
 Full map and the reasoning behind it: [docs/architecture.md](docs/architecture.md).
 
@@ -43,7 +44,7 @@ Full map and the reasoning behind it: [docs/architecture.md](docs/architecture.m
 2. Make the change, matching the existing style (4-space indent, plain class names,
    one Sass partial per page area, IIFE + `'use strict'` in JS).
 3. `make serve` → check http://localhost:4000 in both themes and at phone width.
-4. `make check`.
+4. `make check` (also runs the unit tests via `make test`).
 5. Add a CHANGELOG entry and commit with a conventional prefix
    (`feat:`, `fix:`, `content:`, `refactor:`, `docs:`, `chore:`).
 6. Ask Gaurav before merging to `master`.

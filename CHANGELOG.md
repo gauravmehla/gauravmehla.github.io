@@ -6,7 +6,9 @@ ship sit under **Unreleased**.
 
 ## Unreleased
 
-_Nothing yet._
+### Added
+- A terminal: press `` ` `` (or click `>_` on the homepage) to browse posts,
+  projects and links by typing commands. There may be a few hidden ones.
 
 ## 2026-09-30
 
