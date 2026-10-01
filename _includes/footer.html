@@ -1,0 +1,15 @@
+<footer class="site-footer">
+    <div class="footer-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="footer-links">
+        {%- for link in site.data.social %}
+        <a href="{{ link.url }}" aria-label="{{ link.label }}"
+            {%- unless link.url contains 'mailto:' %} target="_blank" rel="noopener"{% endunless %}>
+            {% include icons/{{ link.icon }}.svg %}
+        </a>
+        {%- endfor %}
+    </div>
+</footer>

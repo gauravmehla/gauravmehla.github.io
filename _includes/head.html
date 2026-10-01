@@ -1,0 +1,20 @@
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        // Set the theme before first paint to avoid a light-theme flash
+        (function () {
+            var theme = localStorage.getItem('gm-theme') ||
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'terminal' : 'paper');
+            document.documentElement.className = 'theme-' + theme;
+        })();
+    </script>
+    {% seo %}
+    {% feed_meta %}
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Geist+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <script src="/assets/js/theme.js" defer></script>

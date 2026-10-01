@@ -1,0 +1,18 @@
+# Footer links, in display order.
+#   icon: file name in _includes/icons/ (without .svg)
+
+- label: Email
+  url: mailto:gaurav@mehla.in
+  icon: email
+
+- label: GitHub
+  url: https://github.com/gauravmehla
+  icon: github
+
+- label: LinkedIn
+  url: https://linkedin.com/in/gauravmehla
+  icon: linkedin
+
+- label: Twitter
+  url: https://twitter.com/_gauravmehla
+  icon: twitter

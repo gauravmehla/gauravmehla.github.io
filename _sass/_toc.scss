@@ -1,0 +1,162 @@
+// ===========================
+// Post table of contents
+// ===========================
+// Desktop: fixed sidebar on the left, visible once app JS finds h2s (.has-headings).
+// Below $bp-tablet: off-canvas drawer opened by the ☰ button (.is-open).
+
+.toc-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100vh;
+    background: var(--bg);
+    z-index: 50;
+    overflow-y: auto;
+    padding: 6rem 1.5rem 3rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease,
+        visibility 0.3s ease,
+        background-color var(--transition-speed) ease;
+
+    &.has-headings {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.toc-overlay,
+.toc-close,
+.toc-toggle {
+    display: none;
+}
+
+.toc-heading {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        margin-bottom: 0.6rem;
+    }
+
+    a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        transition: color 0.2s ease;
+
+        &:hover,
+        &.toc-active {
+            color: var(--text);
+            font-weight: 700;
+        }
+    }
+}
+
+@media (max-width: $bp-tablet) {
+    .toc-sidebar {
+        width: 300px;
+        padding: 2rem 2rem 3rem;
+        z-index: 100;
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+            background-color var(--transition-speed) ease;
+        border-right: 1px solid var(--border);
+
+        &.is-open {
+            transform: translateX(0);
+        }
+    }
+
+    .toc-heading {
+        font-size: 1.2rem;
+        text-transform: none;
+        letter-spacing: normal;
+    }
+
+    .toc-list {
+        li {
+            margin-bottom: 0.8rem;
+        }
+
+        a {
+            font-size: 1rem;
+        }
+    }
+
+    .toc-close {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.3rem;
+        cursor: pointer;
+        color: var(--text);
+        padding: 0.2rem;
+        margin-bottom: 1.5rem;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+
+    .toc-overlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 99;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
+
+        &.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .toc-toggle {
+        background: none;
+        border: none;
+        font-size: 1.4rem;
+        cursor: pointer;
+        color: var(--text);
+        padding: 0.3rem;
+        margin-bottom: 1rem;
+        line-height: 1;
+        transition: opacity 0.2s ease;
+
+        &.has-headings {
+            display: block;
+        }
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+}
+
+@media (max-width: $bp-mobile) {
+    .toc-sidebar {
+        width: 85vw;
+    }
+}

@@ -1,0 +1,38 @@
+# Projects shown on the homepage, in display order.
+#
+#   name:        title shown on the page
+#   url:         optional. Leave out for private projects (title renders as plain text)
+#   badge:       optional small label next to the title, e.g. "Now"
+#   tech:        short right-aligned label
+#   description: one or two sentences
+#
+# Private projects (work or personal): generic name, the idea only. No domain,
+# data, workflow, numbers, or employer/product names (see docs/content-guide.md).
+
+- name: Admin Platform
+  badge: Now
+  tech: Go / Kubernetes
+  description: >-
+    An internal platform I own end to end, from architecture and data model to deployment.
+
+- name: Document-to-Data Agent
+  tech: Python
+  description: >-
+    An agent that turns messy everyday input into clean, validated records, built on the
+    idea that the agent reads and code writes.
+
+- name: Visual AI Workspace
+  tech: React / LLMs
+  description: >-
+    An experiment in turning plain-language ideas into visuals you can keep editing.
+
+- name: Agent Infrastructure
+  tech: Python
+  description: >-
+    Experiments in how agents remember context and hand work off to each other.
+
+- name: The JavaScript Workshop
+  url: https://www.amazon.in/gp/product/B0824584WF/
+  tech: Packt Publishing
+  description: >-
+    Co-authored a comprehensive hands-on guide to JavaScript development.

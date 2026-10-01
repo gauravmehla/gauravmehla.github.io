@@ -1,0 +1,21 @@
+{%- comment -%}
+    One row of the homepage projects list. Usage:
+    {% include project-item.html project=project %}   (project from _data/projects.yml)
+{%- endcomment -%}
+{%- assign p = include.project -%}
+<li>
+    <div class="project-header">
+        <div class="project-title">
+            {%- if p.url %}
+            <a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.name }}</a>
+            {%- else %}
+            <span class="project-name">{{ p.name }}</span>
+            {%- endif %}
+            {%- if p.badge %}
+            <span class="project-badge">{{ p.badge }}</span>
+            {%- endif %}
+        </div>
+        <p class="project-desc">{{ p.description }}</p>
+    </div>
+    <span class="project-tech">{{ p.tech }}</span>
+</li>

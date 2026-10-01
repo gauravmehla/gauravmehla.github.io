@@ -1,3 +1,8 @@
+---
+title: Hello World
+description: My first post on the new site.
+---
+
 This is the beginning of something new.
 
 For over a decade, I've been building software — leading teams, designing systems, writing code. My old portfolio was a showcase of what I *know*. Skills, frameworks, progress bars. It served its purpose.

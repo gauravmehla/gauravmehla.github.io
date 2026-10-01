@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<!-- Table of Contents sidebar (filled by app.js from the post's h2s) -->
+<aside id="toc-sidebar" class="toc-sidebar">
+    <button id="toc-close" class="toc-close" aria-label="Close table of contents">✕</button>
+    <nav class="toc-nav">
+        <h2 class="toc-heading">Contents</h2>
+        <ol id="toc-list" class="toc-list"></ol>
+    </nav>
+</aside>
+<div id="toc-overlay" class="toc-overlay"></div>
+
+<div id="post-view">
+    <div class="post-breadcrumb">
+        <a href="/" class="back-link">&larr; Index</a>
+        <span class="bc-sep">/</span>
+        <span>{{ page.date | date: "%b %-d, %Y" }}</span>
+    </div>
+    <button id="toc-toggle" class="toc-toggle" aria-label="Show table of contents">☰</button>
+    <article id="post-content">
+        <h1>{{ page.title | smartify }}</h1>
+        <p class="post-meta">{{ page.date | date: "%B %-d, %Y" }}</p>
+        {{ content }}
+    </article>
+</div>
+
+<script src="/assets/js/toc.js" defer></script>

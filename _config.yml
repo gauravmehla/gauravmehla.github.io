@@ -1,0 +1,49 @@
+title: Gaurav Mehla
+tagline: Software, systems, and what comes next
+description: Engineer, builder, and forward thinker. Essays and ideas on technology, software, and the future.
+url: https://mehla.in
+author: Gaurav Mehla
+lang: en
+
+twitter:
+  username: _gauravmehla
+social:
+  name: Gaurav Mehla
+  links:
+    - https://github.com/gauravmehla
+    - https://linkedin.com/in/gauravmehla
+    - https://twitter.com/_gauravmehla
+
+# Keeps the old SPA URLs working: /blog/hello-world
+permalink: /blog/:title
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+sass:
+  style: compressed
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+feed:
+  path: feed.xml
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .remember
+  - Makefile
+  - scripts
+  - docs
+  - AGENTS.md
+  - CLAUDE.md
+  - CHANGELOG.md
+
+# Use our own layouts only, not the Pages default (primer) theme
+theme: null
