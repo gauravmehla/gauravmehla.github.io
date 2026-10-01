@@ -27,7 +27,12 @@
     }
 }
 
-.theme-toggle-btn {
+.bio-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.icon-btn {
     background: none;
     border: 1px solid var(--border);
     border-radius: 50%;

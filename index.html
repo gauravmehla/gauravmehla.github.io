@@ -5,7 +5,11 @@ layout: default
 <header class="bio">
     <div class="bio-top-row">
         <h1>Gaurav Mehla</h1>
-        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">☾</button>
+        <div class="bio-actions">
+            <button class="icon-btn" data-terminal-open hidden aria-label="Open terminal"
+                title="Open terminal ( ` )">&gt;_</button>
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">☾</button>
+        </div>
     </div>
     {%- for paragraph in site.data.profile.bio %}
     {{ paragraph | markdownify }}

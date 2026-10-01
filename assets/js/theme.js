@@ -27,4 +27,9 @@
     btn.addEventListener('click', function () {
         applyTheme(currentTheme() === 'paper' ? 'terminal' : 'paper', btn);
     });
+
+    // The terminal's `theme` command changes the theme too
+    document.addEventListener('themechange', function (e) {
+        setButtonIcon(btn, e.detail.theme);
+    });
 })();
