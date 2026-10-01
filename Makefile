@@ -3,8 +3,9 @@
 
 DOCKER = docker run --rm -v "$(CURDIR)":/site -w /site -e BUNDLE_PATH=/site/vendor/bundle
 JEKYLL = bash -c "bundle install --quiet && bundle exec jekyll
+NODE = docker run --rm -v "$(CURDIR)":/site -w /site node:22-alpine
 
-.PHONY: help serve build check clean
+.PHONY: help serve build test check clean
 
 help:  ## List commands
 	@grep -E '^[a-z]+:.*##' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  make %-7s %s\n", $$1, $$2}'
@@ -15,7 +16,10 @@ serve:  ## Preview at http://localhost:4000 (rebuilds on save)
 build:  ## Build the site into _site/
 	$(DOCKER) ruby:3.3 $(JEKYLL) build"
 
-check: build  ## Build, then run the pre-publish checks
+test:  ## Run the terminal unit tests
+	$(NODE) node --test "tests/**/*.test.mjs"
+
+check: build test  ## Build, run tests, then the pre-publish checks
 	./scripts/check.sh
 
 clean:  ## Remove build output and caches
