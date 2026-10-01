@@ -6,6 +6,10 @@ ship sit under **Unreleased**.
 
 ## Unreleased
 
+_Nothing yet._
+
+## 2026-09-30 (later)
+
 ### Added
 - A terminal: press `` ` `` (or click `>_` on the homepage) to browse posts,
   projects and links by typing commands (`ls`, `cd`, `cat`, `open`, `neofetch`…), with Tab
