@@ -1,18 +1,15 @@
 ---
 layout: default
 ---
-<!-- Bio: edit the prose here; the stack line comes from _data/stack.yml -->
+<!-- Bio: text lives in _data/profile.yml; the stack line in _data/stack.yml -->
 <header class="bio">
     <div class="bio-top-row">
         <h1>Gaurav Mehla</h1>
         <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">☾</button>
     </div>
-    <p>I'm a <em>Senior Full-Stack Engineer</em> based in Vancouver, with over a decade of experience
-        building things for the web. These days I own an internal platform end to end — the architecture,
-        the roadmap, and most of the calls in between.</p>
-    <p>I've spent years deep in the craft — leading engineering teams, designing scalable systems, and
-        writing code across the entire stack. But this site isn't about my résumé. It's a space for ideas —
-        essays on technology, software, and where I think things are heading.</p>
+    {%- for paragraph in site.data.profile.bio %}
+    {{ paragraph | markdownify }}
+    {%- endfor %}
     <div class="core-stack">
         <span class="stack-label">Core Stack &rarr;</span>
         {%- for tech in site.data.stack %}

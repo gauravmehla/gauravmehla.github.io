@@ -1,0 +1,48 @@
+---
+# Site data for the terminal (assets/js/terminal/). Generated from the same
+# sources as the homepage, so it can't show anything the site doesn't.
+layout: null
+sitemap: false
+---
+{
+    "site": {
+        "title": {{ site.title | jsonify }},
+        "tagline": {{ site.tagline | jsonify }},
+        "url": {{ site.url | jsonify }}
+    },
+    "bio": [
+        {%- for paragraph in site.data.profile.bio %}
+        {{ paragraph | remove: "*" | jsonify }}{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+    ],
+    "posts": [
+        {%- for post in site.posts %}
+        {
+            "slug": {{ post.slug | jsonify }},
+            "title": {{ post.title | jsonify }},
+            "date": {{ post.date | date: "%Y-%m-%d" | jsonify }},
+            "description": {{ post.description | jsonify }},
+            "url": {{ post.url | jsonify }}
+        }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+    ],
+    "projects": [
+        {%- for project in site.data.projects %}
+        {
+            "name": {{ project.name | jsonify }},
+            "tech": {{ project.tech | jsonify }},
+            "description": {{ project.description | jsonify }},
+            "url": {{ project.url | jsonify }}
+        }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+    ],
+    "links": [
+        {%- for link in site.data.social %}
+        {
+            "key": {{ link.icon | jsonify }},
+            "label": {{ link.label | jsonify }},
+            "url": {{ link.url | jsonify }}
+        }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+    ]
+}

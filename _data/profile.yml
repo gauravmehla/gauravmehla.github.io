@@ -1,0 +1,12 @@
+# Homepage bio, one entry per paragraph. Markdown, but use *italics* only:
+# the terminal shows these as plain text with the asterisks removed.
+# Used by index.html and assets/terminal.json.
+bio:
+  - >-
+    I'm a *Senior Full-Stack Engineer* based in Vancouver, with over a decade of experience
+    building things for the web. These days I own an internal platform end to end — the
+    architecture, the roadmap, and most of the calls in between.
+  - >-
+    I've spent years deep in the craft — leading engineering teams, designing scalable systems,
+    and writing code across the entire stack. But this site isn't about my résumé. It's a space
+    for ideas — essays on technology, software, and where I think things are heading.

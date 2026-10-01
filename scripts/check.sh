@@ -5,6 +5,7 @@
 #      per line) may appear anywhere in the built site.
 #   2. Post front matter: every post has a title and a description.
 #   3. Build output: the pages that must exist do exist.
+#   4. Terminal data: assets/terminal.json parses as JSON.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
@@ -39,10 +40,17 @@ done
 
 # 3. Required pages
 before=$failures
-for page in index.html 404.html feed.xml sitemap.xml assets/css/main.css; do
+for page in index.html 404.html feed.xml sitemap.xml assets/css/main.css assets/terminal.json; do
     [ -f "_site/$page" ] || fail "_site/$page was not generated"
 done
 [ "$failures" -eq "$before" ] && pass "required pages generated"
+
+# 4. Terminal data must be valid JSON
+if python3 -c 'import json, sys; json.load(open(sys.argv[1]))' _site/assets/terminal.json 2>/dev/null; then
+    pass "terminal.json is valid JSON"
+else
+    fail "_site/assets/terminal.json is not valid JSON"
+fi
 
 echo
 if [ "$failures" -gt 0 ]; then
